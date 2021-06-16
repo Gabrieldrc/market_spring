@@ -21,6 +21,15 @@ import javax.persistence.*;
     Como se genera automaticamente se coloca esta anotacion
     con la estrategia para indicar que se genere de tipo
     la clave primaria.
+@ManyToOne:
+    Es una anotacion que indica la relacion que tiene
+    Product con Category.
+@JoinColumn:
+    Es la anotacion que indica por que atributo estan
+    relacionados, que en este caso es "category_id",
+    ademas le indicamos con "insertable = false, updatable = false"
+    que con esta relacion no vamos a borrar, cambiar ni actualizar
+    una nueva categoria, eso se haria directamente con el category.
  */
 @Entity
 @Table(name = "products")
@@ -45,6 +54,10 @@ public class Product {
     private Integer stockQuantity;
 
     private Boolean state;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private Category category;
 
     public Integer getProductId() {
         return productId;

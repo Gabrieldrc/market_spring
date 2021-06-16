@@ -1,9 +1,7 @@
 package com.gdrc.market.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -23,6 +21,9 @@ public class Customer {
     private String direction;
 
     private String email;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Purchase> purchases;
 
     public String getId() {
         return id;

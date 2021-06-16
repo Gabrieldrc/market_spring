@@ -2,6 +2,7 @@ package com.gdrc.market.persistence.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "purchases")
@@ -23,6 +24,13 @@ public class Purchase {
     private String comment;
 
     private String state;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    private Customer customer;
+
+    @OneToMany(mappedBy = "product")
+    private List<PurchasesProduct> products;
 
     public Integer getPurchaseId() {
         return purchaseId;

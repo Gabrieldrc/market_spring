@@ -1,7 +1,17 @@
 package com.gdrc.market.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
+/*
+@OneToMany:
+    Esta anotacion indicamos la relacion que tiene,
+    en este caso, Category con Product, que es
+    Uno a Muchos (lo contrario a lo que colocamos
+    en Product), y le indicamos por que propiedad
+    esta mapeada que seria la propiedad category
+    que tenemos en Product.
+ */
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -14,6 +24,9 @@ public class Category {
     private String description;
 
     private Boolean state;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 
     public Integer getCategoryId() {
         return categoryId;

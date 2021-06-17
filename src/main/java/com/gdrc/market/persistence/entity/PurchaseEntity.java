@@ -29,7 +29,7 @@ public class PurchaseEntity {
     @JoinColumn(name = "customer_id", insertable = false, updatable = false)
     private CustomerEntity customerEntity;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "productEntity")
     private List<PurchasesProductEntity> products;
 
     public Integer getPurchaseId() {

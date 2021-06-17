@@ -41,7 +41,7 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public Optional<List<Product>> getByCategory(int categoryId) {
-        List<ProductEntity> productEntities = productCrudRepository.findByCategoryIdOrderByAsc(categoryId);
+        List<ProductEntity> productEntities = productCrudRepository.findByCategoryIdOrderByNameAsc(categoryId);
         return Optional.of(mapper.toProducts(productEntities));
     }
 

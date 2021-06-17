@@ -25,7 +25,7 @@ public class CategoryEntity {
 
     private Boolean state;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "categoryEntity")
     private List<ProductEntity> productEntities;
 
     public Integer getCategoryId() {
@@ -50,5 +50,13 @@ public class CategoryEntity {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public List<ProductEntity> getProductEntities() {
+        return productEntities;
+    }
+
+    public void setProductEntities(List<ProductEntity> productEntities) {
+        this.productEntities = productEntities;
     }
 }

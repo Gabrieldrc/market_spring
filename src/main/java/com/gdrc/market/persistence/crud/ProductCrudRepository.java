@@ -46,7 +46,7 @@ Uso de Query Methods
  */
 public interface ProductCrudRepository extends CrudRepository<ProductEntity, Integer> {
     //    @Query(value = "SELECT * FROM products WHERE category_id = ? ORDER BY ASC", nativeQuery = true)
-    List<ProductEntity> findByCategoryIdOrderByAsc(int categoryId);
+    List<ProductEntity> findByCategoryIdOrderByNameAsc(int categoryId);
 
     Optional<List<ProductEntity>> findByStockQuantityLessThanAndState(int stockQuantity, boolean state);
 }

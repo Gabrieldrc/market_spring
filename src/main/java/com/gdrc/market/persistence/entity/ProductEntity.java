@@ -59,6 +59,14 @@ public class ProductEntity {
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private CategoryEntity categoryEntity;
 
+    public CategoryEntity getCategoryEntity() {
+        return categoryEntity;
+    }
+
+    public void setCategoryEntity(CategoryEntity categoryEntity) {
+        this.categoryEntity = categoryEntity;
+    }
+
     public Integer getProductId() {
         return productId;
     }

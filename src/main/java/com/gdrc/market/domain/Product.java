@@ -3,7 +3,7 @@ package com.gdrc.market.domain;
 public class Product {
     private int productId;
     private String name;
-    private int categoryIds;
+    private int categoryId;
     private double price;
     private int stock;
     private boolean active;
@@ -25,12 +25,12 @@ public class Product {
         this.name = name;
     }
 
-    public int getCategoryIds() {
-        return categoryIds;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryIds(int categoryIds) {
-        this.categoryIds = categoryIds;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public double getPrice() {

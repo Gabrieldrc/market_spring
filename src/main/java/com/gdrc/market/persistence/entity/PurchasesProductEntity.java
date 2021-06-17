@@ -14,7 +14,7 @@ Luego se usa la entidad:
 
 @Entity
 @Table(name = "purchases_products")
-public class PurchasesProduct {
+public class PurchasesProductEntity {
     @EmbeddedId
     private PurchasesProductPK id;
 
@@ -26,11 +26,11 @@ public class PurchasesProduct {
 
     @ManyToOne
     @JoinColumn(name = "purchase_id", insertable = false, updatable = false)
-    private Purchase purchase;
+    private PurchaseEntity purchaseEntity;
 
     @ManyToOne
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private Product product;
+    private ProductEntity productEntity;
 
     public PurchasesProductPK getId() {
         return id;

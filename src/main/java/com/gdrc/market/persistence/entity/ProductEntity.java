@@ -33,7 +33,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "products")
-public class Product {
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
@@ -57,7 +57,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    private Category category;
+    private CategoryEntity categoryEntity;
 
     public Integer getProductId() {
         return productId;

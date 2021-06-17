@@ -1,13 +1,13 @@
 package com.gdrc.market.domain;
 
-public class ProductMapper {
+public class Product {
     private int productId;
     private String name;
     private int categoryIds;
     private double price;
     private int stock;
     private boolean active;
-    private CategoryMapper category;
+    private Category category;
 
     public int getProductId() {
         return productId;
@@ -57,11 +57,11 @@ public class ProductMapper {
         this.active = active;
     }
 
-    public CategoryMapper getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryMapper category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }

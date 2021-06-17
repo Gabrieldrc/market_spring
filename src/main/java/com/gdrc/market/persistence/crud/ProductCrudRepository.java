@@ -1,6 +1,6 @@
 package com.gdrc.market.persistence.crud;
 
-import com.gdrc.market.persistence.entity.Product;
+import com.gdrc.market.persistence.entity.ProductEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -44,9 +44,9 @@ Uso de Query Methods
     anotacion @Query con el valor que representa el query.
 
  */
-public interface ProductCrudRepository extends CrudRepository<Product, Integer> {
+public interface ProductCrudRepository extends CrudRepository<ProductEntity, Integer> {
     //    @Query(value = "SELECT * FROM products WHERE category_id = ? ORDER BY ASC", nativeQuery = true)
-    List<Product> findByCategoryIdOrderByAsc(int categoryId);
+    List<ProductEntity> findByCategoryIdOrderByAsc(int categoryId);
 
-    Optional<List<Product>> findByStockQuantityLessThanAndState(int stockQuantity, boolean state);
+    Optional<List<ProductEntity>> findByStockQuantityLessThanAndState(int stockQuantity, boolean state);
 }

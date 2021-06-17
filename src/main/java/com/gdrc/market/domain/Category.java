@@ -1,6 +1,6 @@
 package com.gdrc.market.domain;
 
-public class CategoryMapper {
+public class Category {
     private int categoryId;
     private String category;
     private boolean active;

@@ -4,6 +4,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/*
+cascade:
+    Indica que, por ejemplo en este caso,
+    cada vez que se llame a una compra, se
+    mostrara en cascada los productos de
+    dicha compra.
+ */
 @Entity
 @Table(name = "purchases")
 public class PurchaseEntity {
@@ -29,7 +36,7 @@ public class PurchaseEntity {
     @JoinColumn(name = "customer_id", insertable = false, updatable = false)
     private CustomerEntity customerEntity;
 
-    @OneToMany(mappedBy = "productEntity")
+    @OneToMany(mappedBy = "purchaseEntity", cascade = {CascadeType.ALL})
     private List<PurchasesProductEntity> products;
 
     public Integer getPurchaseId() {
@@ -78,5 +85,21 @@ public class PurchaseEntity {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public CustomerEntity getCustomerEntity() {
+        return customerEntity;
+    }
+
+    public void setCustomerEntity(CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
+    }
+
+    public List<PurchasesProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<PurchasesProductEntity> products) {
+        this.products = products;
     }
 }

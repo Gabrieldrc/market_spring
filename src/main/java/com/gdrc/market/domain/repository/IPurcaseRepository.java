@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IPurcaseRepository {
     List<Purchase> getAll();
-    Optional<List<Purchase>> getByClient(String clientId);
+    Optional<List<Purchase>> getByCustomer(String customerId);
     Purchase save(Purchase purchase);
 
 }

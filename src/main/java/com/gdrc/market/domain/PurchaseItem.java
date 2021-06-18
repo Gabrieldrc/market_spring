@@ -1,24 +1,12 @@
 package com.gdrc.market.domain;
 
-import com.gdrc.market.persistence.entity.ProductEntity;
-import com.gdrc.market.persistence.entity.PurchaseEntity;
-
 public class PurchaseItem {
-    private int id;
+    private int productId;
     private int quantity;
     private double total;
-    private boolean state;
+    private boolean active;
 //    private PurchaseEntity purchaseEntity;
 //    private ProductEntity productEntity;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -36,11 +24,19 @@ public class PurchaseItem {
         this.total = total;
     }
 
-    public boolean isState() {
-        return state;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

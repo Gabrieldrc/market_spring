@@ -16,7 +16,7 @@ public class CustomerEntity {
     private String lastName;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     private String direction;
 
@@ -49,11 +49,11 @@ public class CustomerEntity {
         this.lastName = lastName;
     }
 
-    public Integer getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

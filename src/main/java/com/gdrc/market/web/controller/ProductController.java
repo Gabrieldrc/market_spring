@@ -2,6 +2,10 @@ package com.gdrc.market.web.controller;
 
 import com.gdrc.market.domain.Product;
 import com.gdrc.market.domain.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +47,18 @@ HttpStatus:
     Es un Enum con los tipos de status para las respuestas
     y asi dar mayor precision a nuestras response.
  */
-
+/*
+ANOTACIONES DE SWAGGER:
+@ApiOperation:
+    Donde le indicas QUE HACE dicha request.
+@ApiResponse:
+    Le indicas que codigo devuelve y que mensaje.
+@ApiResponses:
+    Le indicas mas de una @ApiResponse.
+@ApiParam:
+    Le indicas que es lo que le debes enviar.,
+    si es requerido y un ejemplo.
+ */
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -51,12 +66,21 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
+    @ApiOperation("Get all products")
+    @ApiResponse(code = 200, message = "OK")
     public ResponseEntity<List<Product>> getAll() {
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") int productId) {
+    @ApiOperation("Search a product width an id")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Product not found")
+    })
+    public ResponseEntity<Product> getProduct(
+            @ApiParam(value = "The id of the product", required = true, example = "7")
+            @PathVariable("id") int productId) {
         return productService.getProduct(productId)
                 .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

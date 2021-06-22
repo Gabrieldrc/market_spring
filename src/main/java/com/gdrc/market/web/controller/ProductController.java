@@ -87,19 +87,39 @@ public class ProductController {
     }
 
     @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<Product>> getByCategory(@PathVariable("categoryId") int categoryId) {
+    @ApiOperation("Search a product by category id")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Product not found")
+    })
+    public ResponseEntity<List<Product>> getByCategory(
+            @ApiParam(value = "The id of the category", required = true, example = "7")
+            @PathVariable("categoryId") int categoryId
+    ) {
         return productService.getByCategory(categoryId)
                 .map(products -> new ResponseEntity<>(products, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/save")
+    @ApiOperation("Save a product")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Created")
+    })
     public ResponseEntity<Product> save(@RequestBody Product product) {
         return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable("id") int productId) {
+    @ApiOperation("Delete a product")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Product not found")
+    })
+    public ResponseEntity delete(
+            @ApiParam(value = "The id of the product", required = true, example = "7")
+            @PathVariable("id") int productId
+    ) {
         if (productService.delete(productId)) {
             return new ResponseEntity(HttpStatus.OK);
         }

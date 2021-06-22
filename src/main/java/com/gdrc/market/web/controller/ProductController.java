@@ -2,10 +2,7 @@ package com.gdrc.market.web.controller;
 
 import com.gdrc.market.domain.Product;
 import com.gdrc.market.domain.service.ProductService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,14 +63,18 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    @ApiOperation("Get all products")
+    @ApiOperation(value = "Get all products", authorizations = {
+            @Authorization(value = "JWT")
+    })
     @ApiResponse(code = 200, message = "OK")
     public ResponseEntity<List<Product>> getAll() {
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @ApiOperation("Search a product width an id")
+    @ApiOperation(value = "Search a product width an id", authorizations = {
+            @Authorization(value = "JWT")
+    })
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "Product not found")
@@ -87,7 +88,9 @@ public class ProductController {
     }
 
     @GetMapping("/category/{categoryId}")
-    @ApiOperation("Search a product by category id")
+    @ApiOperation(value = "Search a product by category id", authorizations = {
+            @Authorization(value = "JWT")
+    })
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "Product not found")
@@ -102,7 +105,9 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    @ApiOperation("Save a product")
+    @ApiOperation(value = "Save a product", authorizations = {
+            @Authorization(value = "JWT")
+    })
     @ApiResponses({
             @ApiResponse(code = 201, message = "Created")
     })
@@ -111,7 +116,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @ApiOperation("Delete a product")
+    @ApiOperation(value = "Delete a product", authorizations = {
+            @Authorization(value = "JWT")
+    })
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "Product not found")

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 /*
@@ -51,11 +52,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     necesitamos indicarle a Spring, por medio de la anotacion
     @Bean, que lo elejimos a el como gestor de autenticacion
     de la aplicacion.
-
      */
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    /*
+    Se modifico este metodo para permitir el acceso a la documentacion
+    de Swagger sin necesidad de token.
+     */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(
+                "/v2/api-docs", "/configuration/ui",
+                "/swagger-resources/**", "/configuration/security",
+                "/swagger-ui.html", "/webjars/**",
+                "/swagger-ui/**"
+        );
     }
 }

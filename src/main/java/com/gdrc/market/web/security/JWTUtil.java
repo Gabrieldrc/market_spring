@@ -3,6 +3,7 @@ package com.gdrc.market.web.security;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 /*
@@ -15,6 +16,7 @@ El metodo generateToken:
     - la clave de seguridad (en este caso KEY)
 5 - Compactamos.
  */
+@Component
 public class JWTUtil {
     private static final String KEY = "enM4rk3T70d03sS3gur0";
 
